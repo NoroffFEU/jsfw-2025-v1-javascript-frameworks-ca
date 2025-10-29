@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/checkout-success" element={<CheckoutSuccess />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 };

@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Navbar>
+    <Navbar bg="light" expand="lg" className="shadow-sm mb-4">
       <Container>
         <Navbar.Brand as={Link} to="/">
           Online Shop
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
+          <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
