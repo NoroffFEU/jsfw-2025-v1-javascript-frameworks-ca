@@ -12,25 +12,25 @@ const Header = () => {
         </Navbar.Brand>
 
         {/* Mobile cart */}
-        <div className="d-flex align-items-center gap-2 order-lg-3">
+        <div className="d-flex align-items-center gap-2">
           <Navbar.Toggle aria-controls="main-navbar" />
-          <Nav.Link as={Link} to="/cart" className="d-lg-none p-0">
+          <Nav.Link as={Link} to="/cart" className="d-lg-none no-bm">
             <HiOutlineShoppingBag size={25} />
           </Nav.Link>
         </div>
 
         {/* Nav links */}
-        <Navbar.Collapse id="main-navbar" className="order-lg-2 mt-3">
-          <Nav className="ms-auto align-items-center">
-            <Nav.Link as={Link} to="/" className="px-0 px-lg-2">
+        <Navbar.Collapse id="main-navbar">
+          <Nav className="ms-auto d-flex align-items-center">
+            <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/contact" className="px-0 px-lg-2">
+            <Nav.Link as={Link} to="/contact">
               Contact
             </Nav.Link>
 
             {/* Desktop cart */}
-            <Nav.Link as={Link} to="/cart" className="d-none d-lg-block ps-3">
+            <Nav.Link as={Link} to="/cart" className="d-none d-lg-block no-bm">
               <HiOutlineShoppingBag size={23} />
             </Nav.Link>
           </Nav>

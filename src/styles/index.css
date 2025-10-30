@@ -27,6 +27,7 @@ h6 {
   color: var(--color-primary);
 }
 
+/* Navbar */
 .navbar {
   padding: 0.5rem 1rem;
 }
@@ -34,6 +35,8 @@ h6 {
 .navbar-brand {
   font-style: italic;
   font-weight: 700;
+  font-size: 28px !important;
+  color: var(--color-primary) !important;
 }
 
 .navbar-toggler {
@@ -43,6 +46,7 @@ h6 {
 .navbar-toggler:focus {
   outline: none !important;
   box-shadow: none !important;
+  color: var(--color-accent);
 }
 
 .navbar .nav-link {
@@ -54,4 +58,9 @@ h6 {
 
 .navbar .nav-link:hover {
   color: var(--color-accent);
+  border-bottom: solid 1px var(--color-accent);
+}
+
+.no-bm {
+  border-bottom: none !important;
 }
