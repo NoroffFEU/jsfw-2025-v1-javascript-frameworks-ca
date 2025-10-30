@@ -12,7 +12,7 @@ const Header = () => {
         </Navbar.Brand>
 
         {/* Mobile cart */}
-        <div className="d-flex align-items-center gap-2">
+        <div className="d-flex align-items-center">
           <Navbar.Toggle aria-controls="main-navbar" />
           <Nav.Link as={Link} to="/cart" className="d-lg-none no-bm">
             <HiOutlineShoppingBag size={25} />

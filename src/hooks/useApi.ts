@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ApiResponse } from "../interfaces/api";
 
 export function useApi<T = any>(url: string): ApiResponse<T> {
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<T>([] as T);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -16,7 +16,7 @@ export function useApi<T = any>(url: string): ApiResponse<T> {
         const response = await fetch(url);
         if (!response.ok) throw new Error("Network response was not ok");
         const json = await response.json();
-        setData(json);
+        setData(json.data || json);
       } catch (error) {
         console.error("Error fetching data:", error);
         setIsError(true);
