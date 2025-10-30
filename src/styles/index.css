@@ -1,1 +1,57 @@
+:root {
+  --color-primary: #1e1e1e;
+  --color-accent: #ff5c8d;
+  --color-secondary: #6c63ff;
+  --color-text: #2c2c2c;
+  --color-muted: #6b7280;
+  --color-success: #10b981;
+  --color-error: #ef4444;
 
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+}
+
+body {
+  color: var(--color-text);
+  font-family: var(--font-body);
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+}
+
+.navbar {
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.navbar-toggler {
+  border: none !important;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar .nav-link {
+  color: var(--color-text);
+  font-weight: 500;
+  width: 100%;
+  text-align: right;
+}
+
+.navbar .nav-link:hover {
+  color: var(--color-accent);
+}
