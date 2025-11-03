@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { useApi } from "../hooks/useApi";
 import { Product } from "../interfaces/product";
 import { FaStar } from "react-icons/fa";
@@ -20,14 +21,9 @@ const Home = () => {
     isError,
   } = useApi<Product[]>("https://v2.api.noroff.dev/online-shop");
 
-  // Handle loading and error states
-  if (isLoading) return <p>Loading products...</p>;
-  if (isError) return <p>Error loading products</p>;
-
-  // Make sure products is an array before rendering
-  if (!products || !Array.isArray(products)) {
-    return <p>No products found.</p>;
-  }
+  // Search and sorting states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState<"default" | "price" | "name">("default");
 
   /**
    * Calculates the discount percentage based on the original price
@@ -38,13 +34,70 @@ const Home = () => {
     return Math.round(((price - discountedPrice) / price) * 100);
   };
 
+  /**
+   * Filter products based on search term
+   */
+  const filteredProducts = useMemo(() => {
+    return (products ?? []).filter((p) =>
+      p.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [products, searchTerm]);
+
+  /**
+   * Sort filtered products based on price or name
+   */
+  const sortedProducts = useMemo(() => {
+    if (sortBy === "price") {
+      return [...filteredProducts].sort((a, b) => {
+        const priceA = a.discountedPrice ?? a.price;
+        const priceB = b.discountedPrice ?? b.price;
+        return priceA - priceB;
+      });
+    }
+    if (sortBy === "name") {
+      return [...filteredProducts].sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+    }
+    return filteredProducts;
+  }, [filteredProducts, sortBy]);
+
+  // Handle loading and error states
+  if (isLoading) return <p>Loading products...</p>;
+  if (isError) return <p>Error loading products</p>;
+
+  // Make sure products is an array before rendering
+  if (!products || !Array.isArray(products)) {
+    return <p>No products found.</p>;
+  }
+
   return (
     <div className="container py-4">
       <h1 className="mb-4 fw-bold text-center">All Products</h1>
+      {/* Search & Sort Controls */}
+      <div className="d-flex flex-column flex-md-row justify-content-between mb-4 gap-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
+        <select
+          className="form-select w-25"
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as any)}
+        >
+          <option value="default">Sort by</option>
+          <option value="price">Price</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
 
       {/* Product grid layout */}
       <div className="row g-4">
-        {products.map((p) => {
+        {sortedProducts.map((p) => {
           // Calculate discount for each product
           const discount = calculateDiscount(p.price, p.discountedPrice ?? 0);
 
