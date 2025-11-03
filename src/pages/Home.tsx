@@ -23,7 +23,9 @@ const Home = () => {
 
   // Search and sorting states
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState<"default" | "price" | "name">("default");
+  const [sortBy, setSortBy] = useState<
+    "default" | "price-asc" | "price-desc" | "name-asc" | "name-desc"
+  >("default");
 
   /**
    * Calculates the discount percentage based on the original price
@@ -47,19 +49,32 @@ const Home = () => {
    * Sort filtered products based on price or name
    */
   const sortedProducts = useMemo(() => {
-    if (sortBy === "price") {
-      return [...filteredProducts].sort((a, b) => {
-        const priceA = a.discountedPrice ?? a.price;
-        const priceB = b.discountedPrice ?? b.price;
-        return priceA - priceB;
-      });
+    const sorted = [...filteredProducts];
+
+    switch (sortBy) {
+      case "price-asc":
+        return sorted.sort((a, b) => {
+          const priceA = a.discountedPrice ?? a.price;
+          const priceB = b.discountedPrice ?? b.price;
+          return priceA - priceB;
+        });
+
+      case "price-desc":
+        return sorted.sort((a, b) => {
+          const priceA = a.discountedPrice ?? a.price;
+          const priceB = b.discountedPrice ?? b.price;
+          return priceB - priceA;
+        });
+
+      case "name-asc":
+        return sorted.sort((a, b) => a.title.localeCompare(b.title));
+
+      case "name-desc":
+        return sorted.sort((a, b) => b.title.localeCompare(a.title));
+
+      default:
+        return sorted;
     }
-    if (sortBy === "name") {
-      return [...filteredProducts].sort((a, b) =>
-        a.title.localeCompare(b.title)
-      );
-    }
-    return filteredProducts;
   }, [filteredProducts, sortBy]);
 
   // Handle loading and error states
@@ -85,49 +100,44 @@ const Home = () => {
         />
 
         <select
-          className="form-select w-25"
+          className="form-select w-50"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as any)}
         >
-          <option value="default">Sort by</option>
-          <option value="price">Price</option>
-          <option value="name">Name</option>
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A to Z</option>
+          <option value="name-desc">Name: Z to A</option>
         </select>
       </div>
 
       {/* Product grid layout */}
-      <div className="row g-4">
-        {sortedProducts.map((p) => {
-          // Calculate discount for each product
-          const discount = calculateDiscount(p.price, p.discountedPrice ?? 0);
+      {sortedProducts.length === 0 ? (
+        <p className="text-center text-muted mt-4">No results found.</p>
+      ) : (
+        <div className="row g-4">
+          {sortedProducts.map((p) => {
+            const discount = calculateDiscount(p.price, p.discountedPrice ?? 0);
 
-          return (
-            <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-              {/* Individual product card */}
-              <div className="product-card card h-100 border-0 shadow-sm position-relative">
-                {/* Discount badge (if product is discounted) */}
-                {discount > 0 && (
-                  <div className="discount-badge position-absolute end-0 top-0 m-2">
-                    -{discount}%
-                  </div>
-                )}
-
-                {/* Product image */}
-                <img
-                  src={
-                    p.image?.url ||
-                    "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
-                  }
-                  alt={p.image?.alt || p.title}
-                  className="card-img-top product-img"
-                />
-
-                {/* Product details */}
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title mb-2">{p.title}</h5>
-
-                  {/* Price section with discount display logic */}
-                  <div>
+            return (
+              <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div className="product-card card h-100 border-0 shadow-sm position-relative">
+                  {discount > 0 && (
+                    <div className="discount-badge position-absolute end-0 top-0 m-2">
+                      -{discount}%
+                    </div>
+                  )}
+                  <img
+                    src={
+                      p.image?.url ||
+                      "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
+                    }
+                    alt={p.image?.alt || p.title}
+                    className="card-img-top product-img"
+                  />
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title mb-2">{p.title}</h5>
                     <p className="product-price mb-1">
                       {p.discountedPrice && p.discountedPrice < p.price ? (
                         <>
@@ -142,8 +152,6 @@ const Home = () => {
                         <span className="fw-bold">{p.price} kr</span>
                       )}
                     </p>
-
-                    {/* Rating section */}
                     <div className="d-flex align-items-center gap-1 mt-2">
                       <FaStar className="text-warning" />
                       <span className="text-muted small">
@@ -153,10 +161,10 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

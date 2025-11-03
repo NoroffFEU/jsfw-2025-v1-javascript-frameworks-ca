@@ -16,9 +16,7 @@
 }
 
 .card-title {
-  font-family: var(--font-heading);
   font-size: 1.1rem;
-  color: var(--color-primary);
 }
 
 .product-price {
