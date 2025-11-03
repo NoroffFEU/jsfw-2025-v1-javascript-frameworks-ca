@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useApi } from "../hooks/useApi";
 import { Product } from "../interfaces/product";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../styles/home.css";
 
 /**
@@ -122,44 +123,49 @@ const Home = () => {
 
             return (
               <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div className="product-card card h-100 border-0 shadow-sm position-relative">
-                  {discount > 0 && (
-                    <div className="discount-badge position-absolute end-0 top-0 m-2">
-                      -{discount}%
-                    </div>
-                  )}
-                  <img
-                    src={
-                      p.image?.url ||
-                      "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
-                    }
-                    alt={p.image?.alt || p.title}
-                    className="card-img-top product-img"
-                  />
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title mb-2">{p.title}</h5>
-                    <p className="product-price mb-1">
-                      {p.discountedPrice && p.discountedPrice < p.price ? (
-                        <>
-                          <span className="text-error fw-bold me-2">
-                            {p.discountedPrice} kr
-                          </span>
-                          <span className="text-decoration-line-through text-muted">
-                            {p.price} kr
-                          </span>
-                        </>
-                      ) : (
-                        <span className="fw-bold">{p.price} kr</span>
-                      )}
-                    </p>
-                    <div className="d-flex align-items-center gap-1 mt-2">
-                      <FaStar className="text-warning" />
-                      <span className="text-muted small">
-                        {p.rating ?? "N/A"}
-                      </span>
+                <Link
+                  to={`/product/${p.id}`}
+                  className="text-decoration-none text-dark"
+                >
+                  <div className="product-card card h-100 border-0 shadow-sm position-relative">
+                    {discount > 0 && (
+                      <div className="discount-badge position-absolute end-0 top-0 m-2">
+                        -{discount}%
+                      </div>
+                    )}
+                    <img
+                      src={
+                        p.image?.url ||
+                        "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
+                      }
+                      alt={p.image?.alt || p.title}
+                      className="card-img-top product-img"
+                    />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="card-title mb-2">{p.title}</h5>
+                      <p className="product-price mb-1">
+                        {p.discountedPrice && p.discountedPrice < p.price ? (
+                          <>
+                            <span className="text-error fw-bold me-2">
+                              {p.discountedPrice} kr
+                            </span>
+                            <span className="text-decoration-line-through text-muted">
+                              {p.price} kr
+                            </span>
+                          </>
+                        ) : (
+                          <span className="fw-bold">{p.price} kr</span>
+                        )}
+                      </p>
+                      <div className="d-flex align-items-center gap-1 mt-2">
+                        <FaStar className="text-warning" />
+                        <span className="text-muted small">
+                          {p.rating ?? "N/A"}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             );
           })}
