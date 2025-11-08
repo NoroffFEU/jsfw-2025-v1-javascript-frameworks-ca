@@ -4,18 +4,36 @@ import { Product } from "../interfaces/product";
 import { FaStar } from "react-icons/fa";
 import "../styles/products.css";
 
+/**
+ * ProductDetail Component
+ *
+ * Displays detailed information about a single product fetched from the API.
+ * Includes title, description, price (with discount if applicable),
+ * rating, reviews, tags and an "Add to Cart" button.
+ *
+ * @component
+ * @returns {JSX.Element} Product detail view
+ */
 const ProductDetail = () => {
+  // Extract product ID from URL parameters
   const { id } = useParams<{ id: string }>();
+
+  // Fetch product data from API with useApi hook
   const {
     data: product,
     isLoading,
     isError,
   } = useApi<Product>(`https://v2.api.noroff.dev/online-shop/${id}`);
 
+  // Handle loading and error states
   if (isLoading) return <p>Loading product...</p>;
   if (isError) return <p>Error loading product.</p>;
   if (!product) return <p>Product not found.</p>;
 
+  /**
+   * Calculates the discount percentage based on the original price
+   * and discounted price. Returns 0 if there's no valid discount.
+   */
   const discount =
     product.discountedPrice && product.discountedPrice < product.price
       ? Math.round(
@@ -53,10 +71,12 @@ const ProductDetail = () => {
             </div>
           )}
 
+          {/* Discount Badge */}
           {discount > 0 && (
             <span className="badge error-color mb-2">-{discount}% OFF</span>
           )}
 
+          {/* Product Price (with discount if applicable) */}
           <div className="mb-3">
             {product.discountedPrice &&
             product.discountedPrice < product.price ? (
