@@ -88,20 +88,20 @@ const Home = () => {
   }
 
   return (
-    <div className="container py-4">
-      <h1 className="mb-4 fw-bold text-center">All Products</h1>
+    <div className="container py-4 mt-2 mb-5">
+      <h1 className="fw-bold text-center">All Products</h1>
       {/* Search & Sort Controls */}
-      <div className="d-flex flex-column flex-md-row justify-content-between mb-4 gap-3">
+      <div className="d-flex flex-column flex-md-row justify-content-between mt-4 gap-3">
         <input
           type="text"
-          className="form-control"
+          className="form-control search-sort"
           placeholder="Search products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
         <select
-          className="form-select w-50"
+          className="form-select w-50 search-sort"
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as any)}
         >
@@ -117,7 +117,7 @@ const Home = () => {
       {sortedProducts.length === 0 ? (
         <p className="text-center text-muted mt-4">No results found.</p>
       ) : (
-        <div className="row g-4">
+        <div className="row g-4 mt-1">
           {sortedProducts.map((p) => {
             const discount = calculateDiscount(p.price, p.discountedPrice ?? 0);
 
@@ -127,7 +127,7 @@ const Home = () => {
                   to={`/product/${p.id}`}
                   className="text-decoration-none text-dark"
                 >
-                  <div className="product-card card h-100 border-0 shadow-sm position-relative">
+                  <div className="product-card card h-100 border-0 position-relative">
                     {discount > 0 && (
                       <div className="discount-badge position-absolute end-0 top-0 m-2">
                         -{discount}%

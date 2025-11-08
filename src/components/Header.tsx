@@ -5,7 +5,7 @@ import "../styles/index.css";
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm py-3">
+    <Navbar expand="lg" className="shadow-sm py-3">
       <Container fluid className="px-4">
         <Navbar.Brand as={Link} to="/">
           OnlineShop
@@ -21,7 +21,7 @@ const Header = () => {
 
         {/* Nav links */}
         <Navbar.Collapse id="main-navbar">
-          <Nav className="ms-auto d-flex align-items-center">
+          <Nav className="ms-auto d-flex gap-lg-4 align-items-center">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>

@@ -30,6 +30,16 @@ h6 {
   color: var(--color-primary);
 }
 
+.is-invalid {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 0.15rem rgba(239, 68, 68, 0.25) !important;
+}
+
+.is-valid {
+  border-color: var(--color-success) !important;
+  box-shadow: 0 0 0 0.15rem rgba(16, 185, 129, 0.25) !important;
+}
+
 /* Navbar */
 .navbar {
   padding: 0.5rem 1rem;

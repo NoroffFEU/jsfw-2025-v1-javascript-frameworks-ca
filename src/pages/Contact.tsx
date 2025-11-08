@@ -34,7 +34,9 @@ const Contact = () => {
             id="fullName"
             type="text"
             {...register("fullName")}
-            className={`form-control ${errors.fullName ? "is-invalid" : ""}`}
+            className={`form-control py-2 ${
+              errors.fullName ? "is-invalid" : ""
+            }`}
             placeholder="Enter your full name"
           />
           <div className="invalid-feedback">{errors.fullName?.message}</div>
@@ -49,7 +51,9 @@ const Contact = () => {
             id="subject"
             type="text"
             {...register("subject")}
-            className={`form-control ${errors.subject ? "is-invalid" : ""}`}
+            className={`form-control py-2 ${
+              errors.subject ? "is-invalid" : ""
+            }`}
             placeholder="Enter subject"
           />
           <div className="invalid-feedback">{errors.subject?.message}</div>
@@ -64,7 +68,7 @@ const Contact = () => {
             id="email"
             type="email"
             {...register("email")}
-            className={`form-control ${errors.email ? "is-invalid" : ""}`}
+            className={`form-control py-2 ${errors.email ? "is-invalid" : ""}`}
             placeholder="Enter your email"
           />
           <div className="invalid-feedback">{errors.email?.message}</div>
@@ -78,7 +82,9 @@ const Contact = () => {
           <textarea
             id="message"
             {...register("message")}
-            className={`form-control ${errors.message ? "is-invalid" : ""}`}
+            className={`form-control pt-2 ${
+              errors.message ? "is-invalid" : ""
+            }`}
             placeholder="Write your message..."
             rows={5}
           />
