@@ -5,7 +5,7 @@ import "../styles/index.css";
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg" className="shadow-sm mb-4 py-3">
+    <Navbar bg="light" expand="lg" className="shadow-sm py-3">
       <Container fluid className="px-4">
         <Navbar.Brand as={Link} to="/">
           OnlineShop

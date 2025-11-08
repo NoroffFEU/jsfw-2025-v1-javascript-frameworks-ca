@@ -1,0 +1,26 @@
+.contact-form {
+  max-width: 600px;
+  margin: 40px auto 100px;
+  background-color: white;
+  border-radius: 30px;
+  padding: 33px 35px 43px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form input:focus,
+form textarea:focus {
+  box-shadow: 0 0 0 0.15rem rgba(255, 92, 141, 0.25) !important;
+  border-color: var(--color-accent) !important;
+}
+
+.contact-btn {
+  background-color: var(--color-accent);
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 25px;
+}
+
+.contact-btn:hover {
+  background-color: #e2527e;
+  color: white;
+}

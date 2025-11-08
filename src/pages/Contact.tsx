@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ContactForm } from "../interfaces/contact";
 import { contactSchema } from "../validation/contactSchema";
+import "../styles/contact.css";
 
 const Contact = () => {
   const {
@@ -20,60 +21,68 @@ const Contact = () => {
   };
 
   return (
-    <div className="container py-5">
-      <h2 className="fw-bold mb-4">Contact Us</h2>
-      <form
-        className="contact-form"
-        onSubmit={handleSubmit(onSubmit)}
-        noValidate
-      >
+    <div className="container contact-form">
+      <h1>Contact Us</h1>
+      <hr className="mt-0"></hr>
+      <form className="mt-4" onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* Full Name */}
-        <div>
-          <label htmlFor="fullName">Full Name</label>
+        <div className="mb-3">
+          <label htmlFor="fullName" className="form-label fw-bold">
+            Full Name
+          </label>
           <input
             id="fullName"
             type="text"
             {...register("fullName")}
+            className={`form-control ${errors.fullName ? "is-invalid" : ""}`}
             placeholder="Enter your full name"
           />
-          <div>{errors.fullName?.message}</div>
+          <div className="invalid-feedback">{errors.fullName?.message}</div>
         </div>
 
         {/* Subject */}
-        <div>
-          <label htmlFor="subject">Subject</label>
+        <div className="mb-3">
+          <label htmlFor="subject" className="form-label fw-bold">
+            Subject
+          </label>
           <input
             id="subject"
             type="text"
             {...register("subject")}
+            className={`form-control ${errors.subject ? "is-invalid" : ""}`}
             placeholder="Enter subject"
           />
-          <div>{errors.subject?.message}</div>
+          <div className="invalid-feedback">{errors.subject?.message}</div>
         </div>
 
         {/* Email */}
-        <div>
-          <label htmlFor="email" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label fw-bold">
             Email
           </label>
           <input
             id="email"
             type="email"
             {...register("email")}
+            className={`form-control ${errors.email ? "is-invalid" : ""}`}
             placeholder="Enter your email"
           />
-          <div>{errors.email?.message}</div>
+          <div className="invalid-feedback">{errors.email?.message}</div>
         </div>
 
         {/* Message */}
-        <div>
-          <label htmlFor="message">Message</label>
+        <div className="mb-3">
+          <label htmlFor="message" className="form-label fw-bold">
+            Message
+          </label>
           <textarea
             id="message"
             {...register("message")}
+            className={`form-control ${errors.message ? "is-invalid" : ""}`}
             placeholder="Write your message..."
+            rows={5}
           />
-          <div>{errors.message?.message}</div>
+          <div className="invalid-feedback">{errors.message?.message}</div>
         </div>
 
         {/* Submit Button */}
