@@ -1,10 +1,18 @@
+.image-detail {
+  border-radius: 25px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
 .tags {
-  background-color: #f1f1f1;
-  color: var(--color-text);
-  border-radius: 15px;
-  padding: 0.3rem 1rem;
-  font-size: 1rem;
-  margin-right: 5px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  font-size: 1.1rem;
+}
+
+.rating {
+  font-size: 1.2rem;
 }
 
 .add-btn {
@@ -13,6 +21,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   border-radius: 25px;
+  border: none;
 }
 
 .add-btn:hover {
@@ -22,4 +31,11 @@
 
 .error-color {
   background-color: var(--color-error);
+}
+
+.reviews-box {
+  background-color: white;
+  border-radius: 25px;
+  padding: 9px 0px 9px 13px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
 }

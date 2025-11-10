@@ -31,3 +31,17 @@ form textarea:focus {
   background-color: #e2527e;
   color: white;
 }
+
+.is-invalid {
+  border: solid var(--color-error) 1px !important;
+  box-shadow: 0 0 0 0.15rem rgba(239, 68, 68, 0.25) !important;
+}
+
+.is-valid {
+  border: solid var(--color-success) 1px !important;
+  box-shadow: 0 0 0 0.15rem rgba(16, 185, 129, 0.25) !important;
+}
+
+.invalid-feedback {
+  color: var(--color-error);
+}

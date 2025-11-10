@@ -4,6 +4,16 @@ import { ContactForm } from "../interfaces/contact";
 import { contactSchema } from "../validation/contactSchema";
 import "../styles/contact.css";
 
+/**
+ * Contact Page
+ *
+ * Renders a contact form with fields for full name, subject, email, and message.
+ * Uses react-hook-form for form handling and yup for validation.
+ * Displays inline validation errors and resets on successful submission.
+ *
+ * @component
+ * @returns {JSX.Element} Contact form
+ */
 const Contact = () => {
   const {
     register,
@@ -24,8 +34,10 @@ const Contact = () => {
     <div className="container contact-form">
       <h1>Contact Us</h1>
       <hr className="mt-0"></hr>
+
+      {/* Contact form */}
       <form className="mt-4" onSubmit={handleSubmit(onSubmit)} noValidate>
-        {/* Full Name */}
+        {/* Full Name field */}
         <div className="mb-3">
           <label htmlFor="fullName" className="form-label fw-bold">
             Full Name
@@ -42,7 +54,7 @@ const Contact = () => {
           <div className="invalid-feedback">{errors.fullName?.message}</div>
         </div>
 
-        {/* Subject */}
+        {/* Subject field */}
         <div className="mb-3">
           <label htmlFor="subject" className="form-label fw-bold">
             Subject
@@ -59,7 +71,7 @@ const Contact = () => {
           <div className="invalid-feedback">{errors.subject?.message}</div>
         </div>
 
-        {/* Email */}
+        {/* Email field */}
         <div className="mb-3">
           <label htmlFor="email" className="form-label fw-bold">
             Email
@@ -74,7 +86,7 @@ const Contact = () => {
           <div className="invalid-feedback">{errors.email?.message}</div>
         </div>
 
-        {/* Message */}
+        {/* Message field */}
         <div className="mb-3">
           <label htmlFor="message" className="form-label fw-bold">
             Message

@@ -52,28 +52,35 @@ const ProductDetail = () => {
               "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
             }
             alt={product.image?.alt || product.title}
-            className="img-fluid rounded shadow-sm"
+            className="img-fluid image-detail"
           />
-        </div>
-
-        {/* Product details */}
-        <div className="col-md-6">
-          <h2 className="fw-bold mb-2 mt-3">{product.title}</h2>
-
           {/* Tags */}
           {product.tags && product.tags.length > 0 && (
-            <div className="mb-4">
+            <div className="mt-4">
               {product.tags.map((tag) => (
                 <span key={tag} className="tags text-muted">
-                  {tag}
+                  #{tag}
                 </span>
               ))}
             </div>
           )}
+        </div>
 
+        {/* Product details */}
+        <div className="col-md-6">
+          <div className="mt-4 d-flex align-items-center justify-content-between">
+            <h2 className="fw-bold">{product.title}</h2>
+            {/* Rating */}
+            <div className="d-flex align-items-center fw-bold mb-2 rating">
+              <FaStar className="text-warning me-1" />
+              <span>{product.rating ?? "N/A"}/5</span>
+            </div>
+          </div>
           {/* Discount Badge */}
           {discount > 0 && (
-            <span className="badge error-color mb-2">-{discount}% OFF</span>
+            <span className="badge error-color mb-2 mt-2">
+              -{discount}% OFF
+            </span>
           )}
 
           {/* Product Price (with discount if applicable) */}
@@ -93,27 +100,21 @@ const ProductDetail = () => {
             )}
           </div>
 
-          {/* Rating */}
-          <div className="d-flex align-items-center mb-3">
-            <FaStar className="text-warning me-1" />
-            <span>{product.rating ?? "N/A"}/5</span>
-          </div>
-
           {/* Description */}
-          <p className="text-muted">{product.description}</p>
+          <p>{product.description}</p>
 
           {/* Add to Cart */}
-          <button className="btn add-btn mt-2 px-4 py-2">Add to Cart</button>
+          <button className="add-btn mt-2 px-4 py-2">Add to Cart</button>
 
           {/* Reviews */}
           {product.reviews && product.reviews.length > 0 && (
             <div className="mt-5">
               <h5 className="fw-bold mb-2">Reviews</h5>
               {product.reviews.map((r, i) => (
-                <div key={i} className="mb-2 pb-2 ps-2 pt-2 bg-light">
+                <div key={i} className="mb-2 reviews-box">
                   <strong>{r.username || "Anonymous"}</strong>
-                  <div className="d-flex align-items-center small text-warning mt-1">
-                    <FaStar className="me-1" /> {r.rating}/5
+                  <div className="d-flex align-items-center small mt-1 fw-bold">
+                    <FaStar className="me-1 text-warning" /> {r.rating}/5
                   </div>
                   <p className="mb-0">{r.description}</p>
                 </div>

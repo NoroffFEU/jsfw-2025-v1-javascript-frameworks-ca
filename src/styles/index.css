@@ -16,8 +16,12 @@ body {
   margin: 0;
 }
 
-main {
+#root {
   background-color: var(--color-bg);
+}
+
+main {
+  margin-bottom: 70px;
 }
 
 h1,
@@ -28,16 +32,6 @@ h5,
 h6 {
   font-family: var(--font-heading);
   color: var(--color-primary);
-}
-
-.is-invalid {
-  border-color: var(--color-error) !important;
-  box-shadow: 0 0 0 0.15rem rgba(239, 68, 68, 0.25) !important;
-}
-
-.is-valid {
-  border-color: var(--color-success) !important;
-  box-shadow: 0 0 0 0.15rem rgba(16, 185, 129, 0.25) !important;
 }
 
 /* Navbar */
