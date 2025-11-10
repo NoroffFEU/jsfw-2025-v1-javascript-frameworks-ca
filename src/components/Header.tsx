@@ -5,23 +5,23 @@ import "../styles/index.css";
 
 const Header = () => {
   return (
-    <Navbar expand="lg" className="shadow-sm py-3">
-      <Container fluid className="px-4">
+    <Navbar expand="lg" className="py-2">
+      <Container fluid>
         <Navbar.Brand as={Link} to="/">
-          OnlineShop
+          Shopella
         </Navbar.Brand>
 
         {/* Mobile cart */}
         <div className="d-flex align-items-center">
           <Navbar.Toggle aria-controls="main-navbar" />
-          <Nav.Link as={Link} to="/cart" className="d-lg-none no-bm">
+          <Nav.Link as={Link} to="/cart" className="d-lg-none">
             <HiOutlineShoppingBag size={25} />
           </Nav.Link>
         </div>
 
         {/* Nav links */}
         <Navbar.Collapse id="main-navbar">
-          <Nav className="ms-auto d-flex gap-lg-4 align-items-center">
+          <Nav className="ms-auto d-flex gap-lg-3 align-items-center">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
@@ -30,7 +30,7 @@ const Header = () => {
             </Nav.Link>
 
             {/* Desktop cart */}
-            <Nav.Link as={Link} to="/cart" className="d-none d-lg-block no-bm">
+            <Nav.Link as={Link} to="/cart" className="d-none d-lg-block">
               <HiOutlineShoppingBag size={23} />
             </Nav.Link>
           </Nav>

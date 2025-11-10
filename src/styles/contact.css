@@ -25,10 +25,11 @@ form textarea:focus {
   font-size: 1.1rem;
   font-weight: 700;
   border-radius: 25px;
+  color: white;
 }
 
 .contact-btn:hover {
-  background-color: #e2527e;
+  background-color: #854031;
   color: white;
 }
 

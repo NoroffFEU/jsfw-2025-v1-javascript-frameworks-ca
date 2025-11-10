@@ -22,10 +22,11 @@
   font-weight: 700;
   border-radius: 25px;
   border: none;
+  color: white;
 }
 
 .add-btn:hover {
-  background-color: #e2527e;
+  background-color: #854031;
   color: white;
 }
 
