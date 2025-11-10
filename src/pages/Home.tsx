@@ -88,8 +88,8 @@ const Home = () => {
   }
 
   return (
-    <div className="container py-4 mt-2 mb-5">
-      <h1 className="fw-bold text-center">All Products</h1>
+    <div className="container py-4 px-4 mt-2 mb-5 home">
+      <h1 className="text-center">All Products</h1>
       {/* Search & Sort Controls */}
       <div className="d-flex flex-column flex-md-row justify-content-between mt-4 gap-3">
         <input
@@ -160,7 +160,7 @@ const Home = () => {
                       <div className="d-flex align-items-center gap-1 mt-2">
                         <FaStar className="text-warning" />
                         <span className="text-muted small">
-                          {p.rating ?? "N/A"}
+                          {p.rating ?? "N/A"}/5
                         </span>
                       </div>
                     </div>

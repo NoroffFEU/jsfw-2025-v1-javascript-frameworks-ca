@@ -9,12 +9,12 @@
   --font-body: "Inter", sans-serif;
   --font-heading: "Poppins", sans-serif;
 
-  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.45);
   --glass-border: rgba(255, 255, 255, 0.8);
 }
 
 body {
-  color: var(--color-text);
+  color: var(--color-text) !important;
   font-family: var(--font-body);
   margin: 0;
 }
@@ -59,18 +59,20 @@ h6 {
 }
 
 .navbar-brand {
-  font-weight: 700;
+  font-weight: 300;
   font-size: 28px !important;
-  color: var(--color-accent) !important;
   background: white;
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 10px 25px;
   backdrop-filter: blur(6px);
 }
 
 .navbar-toggler {
   border: none !important;
-  color: var(--color-accent);
+  background-color: white !important;
+  border-radius: 20px !important;
+  padding: 8px 17px !important;
+  margin-right: 7px;
 }
 
 .navbar-toggler:focus {

@@ -21,7 +21,7 @@ const Header = () => {
 
         {/* Nav links */}
         <Navbar.Collapse id="main-navbar">
-          <Nav className="ms-auto d-flex gap-lg-3 align-items-center">
+          <Nav className=" ms-auto d-flex gap-lg-3 align-items-center">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>

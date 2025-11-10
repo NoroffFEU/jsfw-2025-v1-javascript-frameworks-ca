@@ -1,31 +1,37 @@
 .contact-form {
-  max-width: 600px;
+  max-width: 600px !important;
   margin: 40px auto 100px;
-  background-color: white;
-  border-radius: 30px;
-  padding: 33px 35px 43px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 33px 37px 43px !important;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 25px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
 }
 
 form input,
 form textarea {
   border: none !important;
-  background-color: var(--color-bg) !important;
-  border-radius: 14px !important;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+  border-radius: 18px !important;
 }
 
 form input:focus,
 form textarea:focus {
-  box-shadow: 0 0 0 0.15rem rgba(255, 92, 141, 0.25) !important;
-  border: solid var(--color-accent) 1px !important;
+  box-shadow: 0 0 0 0.15rem rgba(179, 88, 67, 0.25) !important;
+  border: none;
 }
 
 .contact-btn {
-  background-color: var(--color-accent);
+  background-color: var(--color-accent) !important;
   font-size: 1.1rem;
   font-weight: 700;
   border-radius: 25px;
   color: white;
+  border: none;
 }
 
 .contact-btn:hover {
@@ -35,12 +41,12 @@ form textarea:focus {
 
 .is-invalid {
   border: solid var(--color-error) 1px !important;
-  box-shadow: 0 0 0 0.15rem rgba(239, 68, 68, 0.25) !important;
+  box-shadow: none !important;
 }
 
 .is-valid {
   border: solid var(--color-success) 1px !important;
-  box-shadow: 0 0 0 0.15rem rgba(16, 185, 129, 0.25) !important;
+  box-shadow: none !important;
 }
 
 .invalid-feedback {

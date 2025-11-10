@@ -104,7 +104,7 @@ const Contact = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn contact-btn w-100 py-2 mt-3">
+        <button type="submit" className="contact-btn w-100 py-2 mt-3">
           Send Message
         </button>
       </form>
