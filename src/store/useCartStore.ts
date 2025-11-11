@@ -23,11 +23,22 @@ export const useCartStore = create<CartState>()(
         }
       },
 
-      removeFromCart: (id) => {},
+      removeFromCart: (id) => {
+        set({
+          cart: get().cart.filter((i) => i.id !== id),
+        });
+      },
 
-      clearCart: () => {},
+      clearCart: () => {
+        set({ cart: [] });
+      },
 
-      get totalPrice() {},
+      get totalPrice() {
+        return get().cart.reduce(
+          (sum, i) => sum + (i.discountedPrice || i.price) * i.quantity,
+          0
+        );
+      },
     }),
     {
       name: "cart-storage",

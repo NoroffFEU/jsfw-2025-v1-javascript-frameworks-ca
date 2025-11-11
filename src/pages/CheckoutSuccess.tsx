@@ -6,7 +6,7 @@ const CheckoutSuccess = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="checkout-success d-flex flex-column justify-content-center align-items-center text-center">
+    <div className="glass-container checkout-success d-flex flex-column justify-content-center align-items-center text-center">
       <FaCheckCircle className="text-success mb-3" />
       <h1 className="fw-bold mb-3">Checkout Successful!</h1>
       <p className="mb-4">

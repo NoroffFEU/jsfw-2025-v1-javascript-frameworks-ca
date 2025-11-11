@@ -42,7 +42,7 @@ const ProductDetail = () => {
       : 0;
 
   return (
-    <div className="container detail py-5 px-4 mt-2">
+    <div className="container glass-container detail py-5 px-4 mt-2">
       <div className="row g-4">
         {/* Image */}
         <div className="col-12 col-md-5 mb-4 mb-lg-0">

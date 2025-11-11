@@ -88,7 +88,7 @@ const Home = () => {
   }
 
   return (
-    <div className="container py-4 px-4 mt-2 mb-5 home">
+    <div className="container py-4 px-4 mt-2 mb-5 glass-container">
       <h1 className="text-center">All Products</h1>
       {/* Search & Sort Controls */}
       <div className="d-flex flex-column flex-md-row justify-content-between mt-4 gap-3">
