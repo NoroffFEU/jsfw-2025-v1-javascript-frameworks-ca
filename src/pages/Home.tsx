@@ -127,12 +127,14 @@ const Home = () => {
                   to={`/product/${p.id}`}
                   className="text-decoration-none text-dark"
                 >
+                  {/* Discount badge */}
                   <div className="product-card card h-100 border-0 position-relative">
                     {discount > 0 && (
                       <div className="discount-badge position-absolute end-0 top-0 m-2">
                         -{discount}%
                       </div>
                     )}
+                    {/* Image */}
                     <img
                       src={
                         p.image?.url ||
@@ -141,8 +143,11 @@ const Home = () => {
                       alt={p.image?.alt || p.title}
                       className="card-img-top product-img"
                     />
+                    {/* Product card */}
                     <div className="card-body d-flex flex-column">
+                      {/* Product title */}
                       <h5 className="card-title mb-2">{p.title}</h5>
+                      {/* Product price */}
                       <p className="product-price mb-1">
                         {p.discountedPrice && p.discountedPrice < p.price ? (
                           <>
@@ -157,12 +162,18 @@ const Home = () => {
                           <span className="fw-bold">{p.price} kr</span>
                         )}
                       </p>
-                      <div className="d-flex align-items-center gap-1 mt-2">
-                        <FaStar className="text-warning" />
-                        <span className="text-muted small">
-                          {p.rating ?? "N/A"}/5
-                        </span>
-                      </div>
+                      {/* Product rating */}
+                      {p.rating && p.rating > 0 ? (
+                        <div className="d-flex align-items-center gap-1 mt-2">
+                          <FaStar className="text-warning" />
+                          <span className="text-muted small">{p.rating}/5</span>
+                        </div>
+                      ) : (
+                        <div className="d-flex align-items-center gap-1 text-muted small mt-2">
+                          <FaStar className="text-warning" />
+                          No ratings
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>

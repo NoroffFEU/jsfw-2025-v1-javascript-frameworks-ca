@@ -1,18 +1,37 @@
+.detail {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  max-width: 1300px;
+  width: 90%;
+}
+
 .image-detail {
   border-radius: 25px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
+.detail-box {
+  background-color: white;
+  border-radius: 25px;
+  padding: 18px 8px 7px 14px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.05);
+}
+
 .tags {
   background-color: white;
   border-radius: 20px;
-  padding: 5px 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  padding: 5px 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   font-size: 1.1rem;
 }
 
 .rating {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .add-btn {
@@ -34,9 +53,14 @@
   background-color: var(--color-error);
 }
 
+.reviews-container {
+  overflow-y: scroll;
+  max-height: 300px;
+}
+
 .reviews-box {
   background-color: white;
   border-radius: 25px;
   padding: 9px 0px 9px 13px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
