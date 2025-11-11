@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
-import "../styles/cart.css";
+import "../styles/success.css";
 
 const CheckoutSuccess = () => {
   const navigate = useNavigate();
