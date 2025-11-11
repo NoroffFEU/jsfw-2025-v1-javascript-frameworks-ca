@@ -55,6 +55,14 @@ h6 {
   transition: all 0.3s ease;
 }
 
+.text-error {
+  color: var(--color-error);
+}
+
+.error-color {
+  background-color: var(--color-error);
+}
+
 /* Navbar */
 .navbar {
   background: var(--glass-bg);

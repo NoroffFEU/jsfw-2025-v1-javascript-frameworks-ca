@@ -42,10 +42,6 @@
   color: white;
 }
 
-.error-color {
-  background-color: var(--color-error);
-}
-
 .reviews-container {
   overflow-y: scroll;
   max-height: 300px;

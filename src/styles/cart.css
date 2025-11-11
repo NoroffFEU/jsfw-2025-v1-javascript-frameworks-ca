@@ -6,3 +6,47 @@
 .empty-btn {
   padding: 14px 60px;
 }
+
+.cart-img {
+  width: 80px;
+  border-radius: 15px;
+}
+
+.cart-items {
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.trash-btn {
+  color: var(--color-error);
+  border: none;
+  background-color: transparent;
+  font-size: 1.1rem;
+}
+
+.clear-btn {
+  padding: 7px 15px;
+  border: solid var(--color-error) 1px;
+  border-radius: 20px;
+  color: var(--color-error);
+}
+
+.clear-btn:hover {
+  background-color: var(--color-error);
+  color: white;
+}
+
+.checkout-btn {
+  background-color: var(--color-accent);
+  padding: 12px 55px;
+  border: none;
+  color: white;
+  border-radius: 25px;
+  font-size: 1.2rem;
+}
+
+.checkout-btn:hover {
+  background-color: #854031;
+  color: white;
+}
