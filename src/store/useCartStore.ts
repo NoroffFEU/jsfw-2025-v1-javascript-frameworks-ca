@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { CartState } from "../interfaces/cart";
+import { CartItem, CartState } from "../interfaces/cart";
 
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       cart: [],
 
-      addToCart: (item) => {
+      addToCart: (item: CartItem) => {
         const existingItem = get().cart.find((i) => i.id === item.id);
 
         if (existingItem) {
@@ -23,25 +23,14 @@ export const useCartStore = create<CartState>()(
         }
       },
 
-      removeFromCart: (id) => {
-        set({
-          cart: get().cart.filter((i) => i.id !== id),
-        });
-      },
+      removeFromCart: (id: string) =>
+        set({ cart: get().cart.filter((i) => i.id !== id) }),
 
-      clearCart: () => {
-        set({ cart: [] });
-      },
-
-      get totalPrice() {
-        return get().cart.reduce(
-          (sum, i) => sum + (i.discountedPrice || i.price) * i.quantity,
-          0
-        );
-      },
+      clearCart: () => set({ cart: [] }),
     }),
     {
       name: "cart-storage",
+      partialize: (state) => ({ cart: state.cart }),
     }
   )
 );

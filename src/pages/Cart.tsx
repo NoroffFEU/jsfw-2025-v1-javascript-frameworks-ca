@@ -4,12 +4,20 @@ import { FaTrashAlt } from "react-icons/fa";
 import "../styles/cart.css";
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart, totalPrice } = useCartStore();
+  const cart = useCartStore((state) => state.cart);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  const totalPrice = cart.reduce(
+    (sum, i) => sum + (i.discountedPrice || i.price) * i.quantity,
+    0
+  );
+
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    clearCart();
     navigate("/checkout-success");
+    clearCart();
   };
 
   if (cart.length === 0) {
@@ -31,7 +39,7 @@ const Cart = () => {
         {cart.map((item) => (
           <div
             key={item.id}
-            className="cart-items d-flex align-items-center justify-content-between mb-3 p-3"
+            className="cart-items d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 p-3"
           >
             <div className="d-flex align-items-center gap-3">
               <img
@@ -40,7 +48,7 @@ const Cart = () => {
                   "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
                 }
                 alt={item.title}
-                className="img-fluid cart-img"
+                className="cart-img"
               />
               <div>
                 <h2 className="mb-1 fs-5">{item.title}</h2>
@@ -50,7 +58,7 @@ const Cart = () => {
               </div>
             </div>
 
-            <div className="d-flex align-items-center gap-4">
+            <div className="d-flex align-items-center justify-content-end w-md-auto gap-4">
               <div className="d-flex gap-2">
                 <span className="fw-bold text-error">
                   {(item.discountedPrice || item.price) * item.quantity} kr
@@ -79,9 +87,11 @@ const Cart = () => {
         <h3 className="mb-0 fs-4">Total: {totalPrice.toFixed(2)} kr</h3>
       </div>
 
-      <button className="checkout-btn mt-4 fw-bold" onClick={handleCheckout}>
-        Continue to Checkout
-      </button>
+      <div className="d-flex justify-content-end">
+        <button className="checkout-btn mt-4 fw-bold" onClick={handleCheckout}>
+          Continue to Checkout
+        </button>
+      </div>
     </div>
   );
 };
