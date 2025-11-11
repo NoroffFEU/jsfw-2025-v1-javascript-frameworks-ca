@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useApi } from "../hooks/useApi";
 import { Product } from "../interfaces/product";
+import { useCartStore } from "../store/useCartStore";
 import { FaStar } from "react-icons/fa";
 import "../styles/products.css";
 
@@ -25,6 +26,9 @@ const ProductDetail = () => {
     isError,
   } = useApi<Product>(`https://v2.api.noroff.dev/online-shop/${id}`);
 
+  // Access Zustand store
+  const { addToCart } = useCartStore();
+
   // Handle loading and error states
   if (isLoading) return <p>Loading product...</p>;
   if (isError) return <p>Error loading product.</p>;
@@ -40,6 +44,18 @@ const ProductDetail = () => {
           ((product.price - product.discountedPrice) / product.price) * 100
         )
       : 0;
+
+  // Handle add to cart action
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      discountedPrice: product.discountedPrice ?? product.price ?? 0,
+      quantity: 1,
+      image: product.image?.url,
+    });
+  };
 
   return (
     <div className="container glass-container detail py-5 px-4 mt-2">
@@ -111,7 +127,9 @@ const ProductDetail = () => {
           </div>
 
           {/* Add to Cart */}
-          <button className="add-btn mt-4 px-4 py-2">Add to Cart</button>
+          <button onClick={handleAddToCart} className="add-btn mt-4 px-4 py-2">
+            Add to Cart
+          </button>
 
           {/* Reviews */}
           <div className="reviews-container mt-5">
