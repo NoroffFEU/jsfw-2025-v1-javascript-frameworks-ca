@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { useApi } from "../hooks/useApi";
 import { Product } from "../interfaces/product";
 import { FaStar } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
 
@@ -91,14 +92,25 @@ const Home = () => {
     <div className="container py-4 px-4 mt-2 mb-5 glass-container">
       <h1 className="text-center">All Products</h1>
       {/* Search & Sort Controls */}
-      <div className="d-flex flex-column flex-md-row justify-content-between mt-4 gap-3">
-        <input
-          type="text"
-          className="form-control search-sort"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+      <div className="d-flex flex-column flex-md-row justify-content-between mt-4 gap-3 position-relative">
+        <div className="position-relative flex-grow-1">
+          <input
+            type="text"
+            className="form-control search-sort"
+            placeholder="Search products..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {searchTerm && (
+            <button
+              type="button"
+              className="clear-search-btn"
+              onClick={() => setSearchTerm("")}
+            >
+              <IoMdClose />
+            </button>
+          )}
+        </div>
 
         <select
           className="form-select w-50 search-sort"
