@@ -109,7 +109,7 @@ const ProductDetail = () => {
               </span>
             )}
 
-            {/* Product Price (with discount if applicable) */}
+            {/* Product Price */}
             <div className="mb-3">
               {product.discountedPrice &&
               product.discountedPrice < product.price ? (

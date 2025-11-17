@@ -5,10 +5,22 @@ import { useCartStore } from "../store/useCartStore";
 import "../styles/success.css";
 import { toast } from "react-toastify";
 
+/**
+ * CheckoutSuccess Component
+ *
+ * Displays a confirmation screen after a successful checkout.
+ * Clears the user's cart and shows a success toast notification.
+ * Includes a checkmark icon, confirmation message, and a button
+ * to navigate back to the home page.
+ *
+ * @component
+ * @returns {JSX.Element} Checkout success confirmation view
+ */
 const CheckoutSuccess = () => {
   const clearCart = useCartStore((state) => state.clearCart);
   const navigate = useNavigate();
 
+  // Clear cart
   useEffect(() => {
     clearCart();
     toast.success("Order placed!", {

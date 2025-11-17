@@ -94,6 +94,7 @@ const Home = () => {
       {/* Search & Sort Controls */}
       <div className="d-flex flex-column flex-md-row justify-content-between mt-4 gap-3 position-relative">
         <div className="position-relative flex-grow-1">
+          {/* Search */}
           <input
             type="text"
             className="form-control search-sort"
@@ -111,7 +112,7 @@ const Home = () => {
             </button>
           )}
         </div>
-
+        {/* Sort */}
         <select
           className="form-select w-50 search-sort"
           value={sortBy}
