@@ -2,7 +2,7 @@ import { useCartStore } from "../store/useCartStore";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import "../styles/cart.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
@@ -77,7 +77,9 @@ const Cart = () => {
                 className="trash-btn mb-1"
                 onClick={() => {
                   removeFromCart(item.id);
-                  toast.error("Removed from cart");
+                  toast.success("Removed from cart", {
+                    className: "toast-success",
+                  });
                 }}
               >
                 <FaTrashAlt />
@@ -94,7 +96,9 @@ const Cart = () => {
           className="clear-btn fw-bold"
           onClick={() => {
             clearCart();
-            toast.success("Cart cleared!");
+            toast.success("Cart cleared!", {
+              className: "toast-success",
+            });
           }}
         >
           Clear Cart

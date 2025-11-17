@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ContactForm } from "../interfaces/contact";
 import { contactSchema } from "../validation/contactSchema";
 import "../styles/contact.css";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 /**
  * Contact Page
@@ -27,12 +27,16 @@ const Contact = () => {
 
   // Handle form submission
   const onSubmit: SubmitHandler<ContactForm> = (data) => {
-    toast.success("Message sent successfully!");
+    toast.success("Message sent successfully!", {
+      className: "toast-success",
+    });
     reset();
   };
 
   const onError = () => {
-    toast.error("Please fix the errors and try again.");
+    toast.error("Please complete all required fields", {
+      className: "toast-error",
+    });
   };
 
   return (

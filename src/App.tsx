@@ -6,14 +6,15 @@ import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
       <main className="flex-grow-1 container-fluid">
-        <Toaster position="top-center" />
+        <ToastContainer position="top-center" />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetail />} />

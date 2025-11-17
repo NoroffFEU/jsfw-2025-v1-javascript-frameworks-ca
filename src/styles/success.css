@@ -4,8 +4,9 @@
   padding: 70px 0;
 }
 
-.text-success {
+.icon-success {
   font-size: 60px;
+  color: var(--color-success) !important;
 }
 
 .navigate-btn {
