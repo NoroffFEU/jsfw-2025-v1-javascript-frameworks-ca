@@ -8,6 +8,7 @@ const Cart = () => {
   const cart = useCartStore((state) => state.cart);
   const clearCart = useCartStore((state) => state.clearCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
 
   const totalPrice = cart.reduce(
     (sum, i) => sum + (i.discountedPrice || i.price) * i.quantity,
@@ -40,7 +41,7 @@ const Cart = () => {
         {cart.map((item) => (
           <div
             key={item.id}
-            className="cart-items d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 p-3"
+            className="cart-items d-flex flex-column flex-sm-row align-items-md-center justify-content-between mb-3 p-3"
           >
             <div className="d-flex align-items-center gap-3">
               <Link
@@ -64,26 +65,50 @@ const Cart = () => {
               </Link>
             </div>
 
-            <div className="d-flex align-items-center justify-content-end w-md-auto gap-4">
-              <div className="d-flex gap-2">
+            <div className="d-flex flex-column align-items-end w-md-auto gap-2">
+              <div className="d-flex gap-2 align-items-center">
                 <span className="fw-bold text-error">
                   {(item.discountedPrice || item.price) * item.quantity} kr
                 </span>
                 <span className="text-muted text-decoration-line-through">
                   {item.price * item.quantity} kr
                 </span>
+                <button
+                  className="trash-btn mb-1"
+                  onClick={() => {
+                    removeFromCart(item.id);
+                    toast.success("Removed from cart", {
+                      className: "toast-success",
+                    });
+                  }}
+                >
+                  <FaTrashAlt />
+                </button>
               </div>
-              <button
-                className="trash-btn mb-1"
-                onClick={() => {
-                  removeFromCart(item.id);
-                  toast.success("Removed from cart", {
-                    className: "toast-success",
-                  });
-                }}
-              >
-                <FaTrashAlt />
-              </button>
+
+              <div className="d-flex align-items-center">
+                <button
+                  className="quantity-btn"
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  value={item.quantity}
+                  min={1}
+                  className="quantity-input"
+                  onChange={(e) =>
+                    updateQuantity(item.id, Number(e.target.value))
+                  }
+                />
+                <button
+                  className="quantity-btn"
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
         ))}

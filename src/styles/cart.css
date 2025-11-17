@@ -52,3 +52,20 @@
   background-color: #854031;
   color: white;
 }
+
+.quantity-input {
+  border: solid var(--color-secondary) 1px;
+  padding-left: 7px;
+}
+
+.quantity-btn {
+  background-color: var(--color-secondary);
+  color: black;
+  border: none;
+  padding: 2px 8px;
+}
+
+.quantity-btn:hover {
+  color: white;
+  background-color: rgb(175, 175, 175);
+}
