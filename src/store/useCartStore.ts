@@ -27,6 +27,8 @@ export const useCartStore = create<CartState>()(
         set({ cart: get().cart.filter((i) => i.id !== id) }),
 
       clearCart: () => set({ cart: [] }),
+
+      cartCount: () => get().cart.reduce((sum, i) => sum + i.quantity, 0),
     }),
     {
       name: "cart-storage",
