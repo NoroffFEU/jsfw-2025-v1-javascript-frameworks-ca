@@ -29,6 +29,14 @@ export const useCartStore = create<CartState>()(
       clearCart: () => set({ cart: [] }),
 
       cartCount: () => get().cart.reduce((sum, i) => sum + i.quantity, 0),
+
+      updateQuantity: (id, quantity) => {
+        set({
+          cart: get().cart.map((item) =>
+            item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
+          ),
+        });
+      },
     }),
     {
       name: "cart-storage",

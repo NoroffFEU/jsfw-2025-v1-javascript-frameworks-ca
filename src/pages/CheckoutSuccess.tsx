@@ -6,14 +6,14 @@ import "../styles/success.css";
 import { toast } from "react-toastify";
 
 const CheckoutSuccess = () => {
-  toast.success("Order placed!", {
-    className: "toast-success",
-  });
   const clearCart = useCartStore((state) => state.clearCart);
   const navigate = useNavigate();
 
   useEffect(() => {
     clearCart();
+    toast.success("Order placed!", {
+      className: "toast-success",
+    });
   }, [clearCart]);
 
   return (
