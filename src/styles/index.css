@@ -113,3 +113,11 @@ h6 {
   background: rgba(255, 255, 255, 0.35);
   transform: translateY(-1px);
 }
+
+.cart-count {
+  font-size: 14px;
+}
+
+.cart-count:hover {
+  color: var(--color-accent);
+}

@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
+import { useCartStore } from "../store/useCartStore";
 import "../styles/success.css";
 
 const CheckoutSuccess = () => {
+  const clearCart = useCartStore((state) => state.clearCart);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
 
   return (
     <div className="glass-container checkout-success d-flex flex-column justify-content-center align-items-center text-center">

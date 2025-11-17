@@ -20,7 +20,7 @@ const Header = () => {
           <Nav.Link as={Link} to="/cart" className="d-lg-none">
             <HiOutlineShoppingBag size={25} />
             {cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 fw-bold text-xs">
+              <span className="position-absolute fw-bold cart-count">
                 {cartCount}
               </span>
             )}
@@ -41,7 +41,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/cart" className="d-none d-lg-block">
               <HiOutlineShoppingBag size={23} />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 fw-bold text-xs">
+                <span className="position-absolute fw-bold cart-count">
                   {cartCount}
                 </span>
               )}

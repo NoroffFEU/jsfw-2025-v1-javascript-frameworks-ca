@@ -42,20 +42,25 @@ const Cart = () => {
             className="cart-items d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-3 p-3"
           >
             <div className="d-flex align-items-center gap-3">
-              <img
-                src={
-                  item.image ||
-                  "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
-                }
-                alt={item.title}
-                className="cart-img"
-              />
-              <div>
-                <h2 className="mb-1 fs-5">{item.title}</h2>
-                <p className="mb-0 text-muted small">
-                  {item.quantity} × {item.discountedPrice || item.price} kr
-                </p>
-              </div>
+              <Link
+                to={`/product/${item.id}`}
+                className="text-decoration-none text-black d-flex align-items-center gap-3"
+              >
+                <img
+                  src={
+                    item.image ||
+                    "https://images.pexels.com/photos/28216688/pexels-photo-28216688.png"
+                  }
+                  alt={item.title}
+                  className="cart-img"
+                />
+                <div>
+                  <h2 className="mb-1 fs-5">{item.title}</h2>
+                  <p className="mb-0 text-muted">
+                    {item.quantity} × {item.discountedPrice || item.price} kr
+                  </p>
+                </div>
+              </Link>
             </div>
 
             <div className="d-flex align-items-center justify-content-end w-md-auto gap-4">
@@ -64,7 +69,7 @@ const Cart = () => {
                   {(item.discountedPrice || item.price) * item.quantity} kr
                 </span>
                 <span className="text-muted text-decoration-line-through">
-                  {item.price} kr
+                  {item.price * item.quantity} kr
                 </span>
               </div>
               <button
