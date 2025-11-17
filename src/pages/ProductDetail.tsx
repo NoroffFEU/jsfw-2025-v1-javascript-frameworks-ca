@@ -4,6 +4,7 @@ import { Product } from "../interfaces/product";
 import { useCartStore } from "../store/useCartStore";
 import { FaStar } from "react-icons/fa";
 import "../styles/products.css";
+import toast from "react-hot-toast";
 
 /**
  * ProductDetail Component
@@ -55,6 +56,7 @@ const ProductDetail = () => {
       quantity: 1,
       image: product.image?.url,
     });
+    toast.success("Added to cart!");
   };
 
   return (

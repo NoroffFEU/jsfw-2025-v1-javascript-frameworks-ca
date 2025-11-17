@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaCheckCircle } from "react-icons/fa";
 import { useCartStore } from "../store/useCartStore";
 import "../styles/success.css";
+import toast from "react-hot-toast";
 
 const CheckoutSuccess = () => {
+  toast.success("Order placed!");
   const clearCart = useCartStore((state) => state.clearCart);
   const navigate = useNavigate();
 

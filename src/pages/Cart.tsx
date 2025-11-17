@@ -2,6 +2,7 @@ import { useCartStore } from "../store/useCartStore";
 import { Link, useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import "../styles/cart.css";
+import toast from "react-hot-toast";
 
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
@@ -74,7 +75,10 @@ const Cart = () => {
               </div>
               <button
                 className="trash-btn mb-1"
-                onClick={() => removeFromCart(item.id)}
+                onClick={() => {
+                  removeFromCart(item.id);
+                  toast.error("Removed from cart");
+                }}
               >
                 <FaTrashAlt />
               </button>
@@ -86,7 +90,13 @@ const Cart = () => {
       <hr />
 
       <div className="d-flex justify-content-between align-items-center mt-4">
-        <button className="clear-btn fw-bold" onClick={clearCart}>
+        <button
+          className="clear-btn fw-bold"
+          onClick={() => {
+            clearCart();
+            toast.success("Cart cleared!");
+          }}
+        >
           Clear Cart
         </button>
         <h3 className="mb-0 fs-4">Total: {totalPrice.toFixed(2)} kr</h3>
