@@ -1,5 +1,17 @@
 import * as yup from "yup";
 
+/**
+ * Yup validation schema for the Contact form.
+ *
+ * Validates:
+ * - fullName: required, minimum 3 characters
+ * - subject: required, minimum 3 characters
+ * - email: required, must be a valid email format
+ * - message: required, minimum 10 characters
+ *
+ * @example
+ * contactSchema.validate({ fullName: "John", subject: "Hi", email: "a@b.com", message: "Hello world" })
+ */
 export const contactSchema = yup
   .object({
     fullName: yup
