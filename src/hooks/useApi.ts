@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 import { ApiResponse } from "../interfaces/api";
 
+/**
+ * Custom React hook for fetching data from an API.
+ *
+ * @param {string} url The API endpoint to fetch data from.
+ * @returns {ApiResponse<T>} Object containing `data`, `isLoading`, and `isError`.
+ *
+ * @example
+ * const { data, isLoading, isError } = useApi<Product[]>("/api/products");
+ */
 export function useApi<T = any>(url: string): ApiResponse<T> {
   const [data, setData] = useState<T>([] as T);
   const [isLoading, setIsLoading] = useState(false);

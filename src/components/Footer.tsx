@@ -1,3 +1,11 @@
+/**
+ * Footer Component
+ *
+ * Displays a simple footer with copyright information.
+ *
+ * @component
+ * @returns {JSX.Element} Footer view
+ */
 const Footer = () => {
   return (
     <footer className="text-center py-3 text-muted">

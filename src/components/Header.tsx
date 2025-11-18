@@ -4,7 +4,17 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { useCartStore } from "../store/useCartStore";
 import "../styles/index.css";
 
+/**
+ * Header Component
+ *
+ * Renders the navigation bar with links to Home, Contact, and Cart.
+ * Displays cart count dynamically and supports mobile menu toggle.
+ *
+ * @component
+ * @returns {JSX.Element} Header/navbar view
+ */
 const Header = () => {
+  // Get cart count from Zustand store
   const cartCount = useCartStore((state) => state.cartCount());
 
   return (
