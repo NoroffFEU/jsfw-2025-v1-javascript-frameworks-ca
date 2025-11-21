@@ -47,6 +47,13 @@ describe("Home Component", () => {
     expect(screen.getByText("Bread")).toBeInTheDocument();
   });
 
+  test("clicking a product renders a Link element", () => {
+    renderHome();
+
+    const milkLink = screen.getByRole("link", { name: /milk/i });
+    expect(milkLink).toHaveAttribute("href", "/product/1");
+  });
+
   test("search filters products", () => {
     renderHome();
 
@@ -67,5 +74,18 @@ describe("Home Component", () => {
     fireEvent.click(clearBtn);
 
     expect(input).toHaveValue("");
+  });
+
+  test("sorts products by price: low to high", () => {
+    renderHome();
+
+    const select = screen.getByRole("combobox");
+    fireEvent.change(select, { target: { value: "price-asc" } });
+
+    const titles = screen
+      .getAllByRole("heading", { level: 5 })
+      .map((el) => el.textContent);
+
+    expect(titles).toEqual(["Bread", "Milk"]);
   });
 });
