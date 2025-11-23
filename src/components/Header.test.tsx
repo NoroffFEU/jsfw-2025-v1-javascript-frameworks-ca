@@ -7,6 +7,7 @@ jest.mock("../store/useCartStore", () => ({
 }));
 
 describe("Header Component", () => {
+  // Test 1
   test("renders navigation links", () => {
     render(
       <MemoryRouter>
@@ -19,6 +20,7 @@ describe("Header Component", () => {
     expect(screen.getByText("Shopella")).toBeInTheDocument();
   });
 
+  // Test 2
   test("displays cart count when > 0", () => {
     render(
       <MemoryRouter>
@@ -26,6 +28,6 @@ describe("Header Component", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getAllByText("3")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("3")[0]).toHaveClass("cart-count");
   });
 });

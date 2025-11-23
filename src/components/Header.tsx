@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -17,8 +18,16 @@ const Header = () => {
   // Get cart count from Zustand store
   const cartCount = useCartStore((state) => state.cartCount());
 
+  // Mobile menu collapse state
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Navbar expand="lg" className="py-2">
+    <Navbar
+      className="py-2"
+      expand="lg"
+      expanded={expanded}
+      onToggle={setExpanded}
+    >
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           Shopella
@@ -27,7 +36,12 @@ const Header = () => {
         {/* Mobile cart */}
         <div className="d-flex align-items-center">
           <Navbar.Toggle aria-controls="main-navbar" />
-          <Nav.Link as={Link} to="/cart" className="d-lg-none">
+          <Nav.Link
+            as={Link}
+            to="/cart"
+            className="d-lg-none"
+            onClick={() => setExpanded(false)}
+          >
             <HiOutlineShoppingBag size={25} />
             {cartCount > 0 && (
               <span className="position-absolute fw-bold cart-count">
@@ -40,15 +54,24 @@ const Header = () => {
         {/* Nav links */}
         <Navbar.Collapse id="main-navbar">
           <Nav className="ms-auto d-flex align-items-end gap-2 mt-3 mt-lg-0 gap-lg-3 align-lg-items-center">
-            <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/contact">
+            <Nav.Link
+              as={Link}
+              to="/contact"
+              onClick={() => setExpanded(false)}
+            >
               Contact
             </Nav.Link>
 
             {/* Desktop cart */}
-            <Nav.Link as={Link} to="/cart" className="d-none d-lg-block">
+            <Nav.Link
+              as={Link}
+              to="/cart"
+              className="d-none d-lg-block"
+              onClick={() => setExpanded(false)}
+            >
               <HiOutlineShoppingBag size={23} />
               {cartCount > 0 && (
                 <span className="position-absolute fw-bold cart-count">
