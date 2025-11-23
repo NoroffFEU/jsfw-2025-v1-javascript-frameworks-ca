@@ -55,7 +55,7 @@ describe("Cart Component", () => {
     ).toHaveAttribute("href", "/");
   });
 
-  // Test 2 - Render items
+  // Test 2
   test("renders cart items correctly", () => {
     mockCartItems = [
       {
@@ -73,5 +73,75 @@ describe("Cart Component", () => {
     expect(screen.getByText("Milk")).toBeInTheDocument();
     expect(screen.getByText("2 × 8 kr")).toBeInTheDocument();
     expect(screen.getByText("16 kr")).toBeInTheDocument();
+  });
+
+  // Test 3
+  test("removes item when trash button is clicked", () => {
+    mockCartItems = [
+      { id: "1", title: "Milk", price: 10, discountedPrice: 8, quantity: 1 },
+    ];
+
+    renderCart();
+
+    const trashButton = screen.getByRole("button", { name: "" });
+    fireEvent.click(trashButton);
+
+    expect(mockRemoveFromCart).toHaveBeenCalledWith("1");
+    expect(toast.success).toHaveBeenCalledWith("Removed from cart", {
+      className: "toast-success",
+    });
+  });
+
+  // Test 4
+  test("updates quantity when + or - buttons are clicked", () => {
+    mockCartItems = [
+      { id: "1", title: "Milk", price: 10, discountedPrice: 8, quantity: 2 },
+    ];
+
+    renderCart();
+
+    const plusButton = screen.getByText("+");
+    const minusButton = screen.getByText("-");
+
+    fireEvent.click(plusButton);
+    expect(mockUpdateQuantity).toHaveBeenCalledWith("1", 3);
+
+    fireEvent.click(minusButton);
+    expect(mockUpdateQuantity).toHaveBeenCalledWith("1", 1);
+  });
+
+  // Test 5
+  test("clears cart when 'Clear Cart' is clicked", () => {
+    mockCartItems = [
+      { id: "1", title: "Milk", price: 10, discountedPrice: 8, quantity: 1 },
+    ];
+
+    renderCart();
+
+    const clearButton = screen.getByRole("button", { name: /clear cart/i });
+    fireEvent.click(clearButton);
+
+    expect(mockClearCart).toHaveBeenCalled();
+    expect(toast.success).toHaveBeenCalledWith("Cart cleared!", {
+      className: "toast-success",
+    });
+  });
+
+  // Test 6
+  test("navigates to checkout and clears cart", () => {
+    mockCartItems = [
+      { id: "1", title: "Milk", price: 10, discountedPrice: 8, quantity: 1 },
+    ];
+
+    renderCart();
+
+    const checkoutBtn = screen.getByRole("button", {
+      name: /continue to checkout/i,
+    });
+
+    fireEvent.click(checkoutBtn);
+
+    expect(mockNavigate).toHaveBeenCalledWith("/checkout-success");
+    expect(mockClearCart).toHaveBeenCalled();
   });
 });

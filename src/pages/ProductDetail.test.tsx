@@ -22,6 +22,7 @@ describe("ProductDetail Component", () => {
     mockedUseCartStore.mockReturnValue({ addToCart: mockAddToCart });
   });
 
+  // Mock Product
   const mockProduct = {
     id: "1",
     title: "Milk",
@@ -46,6 +47,7 @@ describe("ProductDetail Component", () => {
       </MemoryRouter>
     );
 
+  // Test 1
   test("renders loading state", () => {
     mockedUseApi.mockReturnValue({
       data: null,
@@ -56,6 +58,7 @@ describe("ProductDetail Component", () => {
     expect(screen.getByText(/loading product/i)).toBeInTheDocument();
   });
 
+  // Test 2
   test("renders error state", () => {
     mockedUseApi.mockReturnValue({
       data: null,
@@ -66,6 +69,7 @@ describe("ProductDetail Component", () => {
     expect(screen.getByText(/error loading product/i)).toBeInTheDocument();
   });
 
+  // Test 3
   test("renders product details", () => {
     mockedUseApi.mockReturnValue({
       data: mockProduct,
@@ -88,6 +92,7 @@ describe("ProductDetail Component", () => {
     expect(screen.getByText("#fresh")).toBeInTheDocument();
   });
 
+  // Test 4
   test("add to cart button works", async () => {
     mockedUseApi.mockReturnValue({
       data: mockProduct,
