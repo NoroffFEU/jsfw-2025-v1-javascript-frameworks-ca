@@ -14,6 +14,7 @@ describe("Contact Form", () => {
     jest.clearAllMocks();
   });
 
+  // Test 1
   test("renders all form fields", () => {
     render(<Contact />);
 
@@ -26,6 +27,7 @@ describe("Contact Form", () => {
     ).toBeInTheDocument();
   });
 
+  // Test 2
   test("shows validation errors when submitting empty form", async () => {
     render(<Contact />);
 
@@ -52,6 +54,7 @@ describe("Contact Form", () => {
     ).toBeInTheDocument();
   });
 
+  // Test 3
   test("submits successfully when fields are valid", async () => {
     render(<Contact />);
 

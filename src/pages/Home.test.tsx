@@ -8,6 +8,7 @@ jest.mock("../hooks/useApi");
 const mockedUseApi = useApi as jest.MockedFunction<typeof useApi>;
 
 describe("Home Component", () => {
+  // Mock products
   const mockProducts = [
     {
       id: "1",
@@ -41,12 +42,14 @@ describe("Home Component", () => {
       </MemoryRouter>
     );
 
+  // Test 1
   test("renders product titles", () => {
     renderHome();
     expect(screen.getByText("Milk")).toBeInTheDocument();
     expect(screen.getByText("Bread")).toBeInTheDocument();
   });
 
+  // Test 2
   test("clicking a product renders a Link element", () => {
     renderHome();
 
@@ -54,6 +57,7 @@ describe("Home Component", () => {
     expect(milkLink).toHaveAttribute("href", "/product/1");
   });
 
+  // Test 3
   test("search filters products", () => {
     renderHome();
 
@@ -64,6 +68,7 @@ describe("Home Component", () => {
     expect(screen.queryByText("Bread")).not.toBeInTheDocument();
   });
 
+  // Test 4
   test("clear search button clears input", () => {
     renderHome();
 
@@ -76,6 +81,7 @@ describe("Home Component", () => {
     expect(input).toHaveValue("");
   });
 
+  // Test 5
   test("sorts products by price: low to high", () => {
     renderHome();
 
