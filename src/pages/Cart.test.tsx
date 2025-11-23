@@ -71,8 +71,8 @@ describe("Cart Component", () => {
     renderCart();
 
     expect(screen.getByText("Milk")).toBeInTheDocument();
-    expect(screen.getByText("2 × 8 kr")).toBeInTheDocument();
-    expect(screen.getByText("16 kr")).toBeInTheDocument();
+    expect(screen.getByText("2 × 8.00 kr")).toBeInTheDocument();
+    expect(screen.getByText("16.00 kr")).toBeInTheDocument();
   });
 
   // Test 3
