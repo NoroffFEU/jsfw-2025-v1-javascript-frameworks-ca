@@ -77,7 +77,8 @@ const Cart = () => {
                 <div>
                   <h2 className="mb-1 fs-5">{item.title}</h2>
                   <p className="mb-0 text-muted">
-                    {item.quantity} × {item.discountedPrice || item.price} kr
+                    {item.quantity} ×{" "}
+                    {(item.discountedPrice || item.price).toFixed(2)} kr
                   </p>
                 </div>
               </Link>
@@ -87,10 +88,13 @@ const Cart = () => {
               <div className="d-flex gap-2 align-items-center">
                 {/* Item price */}
                 <span className="fw-bold text-error">
-                  {(item.discountedPrice || item.price) * item.quantity} kr
+                  {(
+                    (item.discountedPrice || item.price) * item.quantity
+                  ).toFixed(2)}{" "}
+                  kr
                 </span>
                 <span className="text-muted text-decoration-line-through">
-                  {item.price * item.quantity} kr
+                  {(item.price * item.quantity).toFixed(2)} kr
                 </span>
                 {/* Trash icon */}
                 <button
