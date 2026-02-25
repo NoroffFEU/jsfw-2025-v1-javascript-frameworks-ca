@@ -3,7 +3,8 @@ import { MemoryRouter } from "react-router-dom";
 import Header from "./Header";
 
 jest.mock("../store/useCartStore", () => ({
-  useCartStore: (selector: any) => selector({ cartCount: () => 3 }),
+  useCartStore: (selector: (state: { cartCount: () => number }) => unknown) =>
+    selector({ cartCount: () => 3 }),
 }));
 
 describe("Header Component", () => {

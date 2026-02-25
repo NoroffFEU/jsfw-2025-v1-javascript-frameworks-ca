@@ -27,7 +27,6 @@ export function useApi<T = any>(url: string): ApiResponse<T> {
         const json = await response.json();
         setData(json.data || json);
       } catch (error) {
-        console.error("Error fetching data:", error);
         setIsError(true);
       } finally {
         setIsLoading(false);

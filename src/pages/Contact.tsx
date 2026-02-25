@@ -42,7 +42,7 @@ const Contact = () => {
   return (
     <div className="container glass-container contact-form">
       <h1>Contact Us</h1>
-      <hr className="mt-0"></hr>
+      <hr className="mt-0" />
 
       {/* Contact form */}
       <form
