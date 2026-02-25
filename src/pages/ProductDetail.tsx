@@ -141,7 +141,7 @@ const ProductDetail = () => {
             {product.reviews && product.reviews.length > 0 ? (
               <div className="mt-2">
                 {product.reviews.map((r, i) => (
-                  <div key={i} className="mb-2 reviews-box">
+                  <div key={r.id} className="mb-2 reviews-box">
                     <strong>{r.username || "Anonymous"}</strong>
                     <div className="d-flex align-items-center small mt-1 fw-bold">
                       <FaStar className="me-1 text-warning" /> {r.rating}/5
