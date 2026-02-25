@@ -10,7 +10,7 @@ import { ApiResponse } from "../interfaces/api";
  * @example
  * const { data, isLoading, isError } = useApi<Product[]>("/api/products");
  */
-export function useApi<T = any>(url: string): ApiResponse<T> {
+export function useApi<T = unknown>(url: string): ApiResponse<T> {
   const [data, setData] = useState<T>([] as T);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);

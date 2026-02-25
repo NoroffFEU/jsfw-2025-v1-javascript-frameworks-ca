@@ -116,7 +116,16 @@ const Home = () => {
         <select
           className="form-select w-50 search-sort"
           value={sortBy}
-          onChange={(e) => setSortBy(e.target.value as any)}
+          onChange={(e) =>
+            setSortBy(
+              e.target.value as
+                | "default"
+                | "price-asc"
+                | "price-desc"
+                | "name-asc"
+                | "name-desc"
+            )
+          }
         >
           <option value="default">Default</option>
           <option value="price-asc">Price: Low to High</option>

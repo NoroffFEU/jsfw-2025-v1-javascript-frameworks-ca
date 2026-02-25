@@ -34,7 +34,16 @@ describe("Cart Component", () => {
     );
   });
 
-  let mockCartItems: any[] = [];
+  type MockCartItem = {
+    id: string;
+    title: string;
+    price: number;
+    discountedPrice: number;
+    quantity: number;
+    image?: string;
+  };
+
+  let mockCartItems: MockCartItem[] = [];
 
   const renderCart = () =>
     render(
