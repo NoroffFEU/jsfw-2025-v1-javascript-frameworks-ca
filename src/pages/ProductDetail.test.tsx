@@ -3,26 +3,33 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import ProductDetail from "./ProductDetail";
 import { useApi } from "../hooks/useApi";
 import { useCartStore } from "../store/useCartStore";
+import { CartState } from "../interfaces/cart";
 import { toast } from "react-toastify";
 
+// Mock modules
 jest.mock("../hooks/useApi");
 jest.mock("../store/useCartStore");
 jest.mock("react-toastify", () => ({
   toast: { success: jest.fn() },
 }));
 
+// Type-safe mocked hooks
 const mockedUseApi = useApi as jest.MockedFunction<typeof useApi>;
-const mockedUseCartStore = useCartStore as jest.MockedFunction<any>;
+const mockedUseCartStore = useCartStore as unknown as jest.Mock<
+  Partial<CartState>
+>;
 
 describe("ProductDetail Component", () => {
   const mockAddToCart = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockedUseCartStore.mockReturnValue({ addToCart: mockAddToCart });
+
+    mockedUseCartStore.mockReturnValue({
+      addToCart: mockAddToCart,
+    });
   });
 
-  // Mock Product
   const mockProduct = {
     id: "1",
     title: "Milk",
@@ -47,35 +54,37 @@ describe("ProductDetail Component", () => {
       </MemoryRouter>
     );
 
-  // Test 1
   test("renders loading state", () => {
     mockedUseApi.mockReturnValue({
       data: null,
       isLoading: true,
       isError: false,
     });
+
     renderProductDetail();
+
     expect(screen.getByText(/loading product/i)).toBeInTheDocument();
   });
 
-  // Test 2
   test("renders error state", () => {
     mockedUseApi.mockReturnValue({
       data: null,
       isLoading: false,
       isError: true,
     });
+
     renderProductDetail();
+
     expect(screen.getByText(/error loading product/i)).toBeInTheDocument();
   });
 
-  // Test 3
   test("renders product details", () => {
     mockedUseApi.mockReturnValue({
       data: mockProduct,
       isLoading: false,
       isError: false,
     });
+
     renderProductDetail();
 
     expect(screen.getByText(mockProduct.title)).toBeInTheDocument();
@@ -92,13 +101,13 @@ describe("ProductDetail Component", () => {
     expect(screen.getByText("#fresh")).toBeInTheDocument();
   });
 
-  // Test 4
   test("add to cart button works", async () => {
     mockedUseApi.mockReturnValue({
       data: mockProduct,
       isLoading: false,
       isError: false,
     });
+
     renderProductDetail();
 
     fireEvent.click(screen.getByText(/add to cart/i));

@@ -26,7 +26,7 @@ const Contact = () => {
   });
 
   // Handle form submission
-  const onSubmit: SubmitHandler<ContactForm> = (data) => {
+  const onSubmit: SubmitHandler<ContactForm> = (_) => {
     toast.success("Message sent successfully!", {
       className: "toast-success",
     });
